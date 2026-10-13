@@ -146,7 +146,7 @@
       isolation: isolate;
       opacity: 0;
       transform: translateY(14px) scale(.985);
-      animation: arrive 1s cubic-bezier(.2,.75,.25,1) .08s forwards;
+      animation: arrive 1s cubic-bezier(.2,.75,.25,1) .08s forwards, logo-glitch 8.5s steps(1, end) 2.5s infinite;
       filter: drop-shadow(0 18px 60px rgba(112, 54, 190, .22));
     }
     .logo-wrap svg {
@@ -154,6 +154,9 @@
       width: 100%;
       max-height: 72vh;
       overflow: visible;
+      transform-origin: center;
+      animation: logo-float 5.2s ease-in-out 1s infinite;
+      will-change: transform;
     }
     .logo-wrap svg path, .logo-wrap svg polygon, .logo-wrap svg rect, .logo-wrap svg circle, .logo-wrap svg ellipse {
       fill: #fff !important;
@@ -200,6 +203,22 @@
     .footer-label { opacity: .55; }
     @keyframes arrive {
       to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes logo-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    /* Brief horizontal slices create an occasional digital signal glitch. */
+    @keyframes logo-glitch {
+      0%, 91%, 93%, 95%, 97%, 100% { clip-path: inset(0 0 0 0); }
+      91.3% { clip-path: inset(12% 0 72% 0); }
+      91.7% { clip-path: inset(0 0 0 0); }
+      92% { clip-path: inset(58% 0 24% 0); }
+      92.3% { clip-path: inset(0 0 0 0); }
+      94% { clip-path: inset(32% 0 53% 0); }
+      94.3% { clip-path: inset(0 0 0 0); }
+      96% { clip-path: inset(76% 0 8% 0); }
+      96.3% { clip-path: inset(0 0 0 0); }
     }
     @keyframes sheen {
       0% { transform: translateX(-130%); }
